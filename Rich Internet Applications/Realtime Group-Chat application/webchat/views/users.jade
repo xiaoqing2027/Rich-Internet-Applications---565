@@ -1,0 +1,19 @@
+extends layout
+
+block content
+	h2 There are #{count} active users online.
+	p active users list:
+	table(class="pure-table pure-table-bordered")
+		thead
+			tr
+				th User name
+				th Joining time
+				th Socket ID
+		tbody
+			each user in users
+				tr
+					td #{user.name}
+					td #{user.joined_at}
+					td #{user.id}
+
+		
