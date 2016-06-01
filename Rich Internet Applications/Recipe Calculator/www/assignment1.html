@@ -1,0 +1,420 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <!-- Standard Meta -->
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <title>Maggie-CakeBaby</title>
+    <style>
+    .body{
+    
+      font-family: "Helvetica Neue",Helvetica,"Liberation Sans",Arial,sans-serif;
+      font-size: 14px;
+      line-height: 1.4;
+      margin-top: 50px;
+      margin-bottom: 50px;
+      margin-right: 100px;
+      margin-left: 100px;
+      width:1000px;
+      length:800px;
+  	color: #404040;
+    }
+    html {
+      font-family: sans-serif;
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+    }
+	.img{
+	  float:;
+	  width:120px;
+	  length:100px;
+	}
+	</style>
+	<link href="/css/bootstrap.min.css">
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+   
+	<script src="/common/ajaxCheat.js"></script>
+	<script src="/common/jquery-2.1.3.min.js"></script>
+   </head>
+   <body class="body">
+	 
+	   <div>
+		   <!--<div class="img"><img src="565_ag1.png"/></div>-->
+		   <h2> CakeBaby Store</h2><hr/>
+	   </div><br/>
+	   
+  	 <div class="row">
+  	   <div class="col-md-8">
+  	 
+	   <div class="panel panel-warning" id="1">
+	    <div class="panel-heading" >
+		   <p><b>Monday  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>Chocolate Cake:&nbsp; <input type="text" value="1" id="recipe1_1"/>&nbsp;
+		   Cookies:  <input type="text" value="1" id="recipe1_2"/></p>   
+		 </div>  
+	   </div>
+	   <div class="panel panel-warning" id="2">
+	    <div class="panel-heading" >
+		   <p><b>Tuesday &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>Chocolate Cake:  <input type="text" value="0" id="recipe2_1"/>&nbsp;
+		   Cookies:  <input type="text" value="0" id="recipe2_2"/></p>
+		</div>
+	   </div>
+	   
+	   <div class="panel panel-warning" id="3">
+	    <div class="panel-heading" >
+		   <p><b>Wednesday &nbsp;&nbsp;</b>Chocolate Cake:  <input type="text" value="0" id="recipe3_1"/>&nbsp;
+		   Cookies:  <input type="text" value="0" id="recipe3_2"/></p>
+	     </div>
+	   </div>
+	   <div class="panel panel-warning" id="4">
+	    <div class="panel-heading" >
+		   <p><b>Thursday &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>Chocolate Cake:  <input type="text" value="0" id="recipe4_1"/>&nbsp;
+		   Cookies:  <input type="text" value="0" id="recipe4_2"/></p>
+		</div>
+	   </div>
+	   <div class="panel panel-warning" id="5">
+	    <div class="panel-heading" >
+		   <p><b>Friday &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+			   Chocolate Cake:  <input type="text" value="0" id="recipe5_1"/>&nbsp;
+		   Cookies:  <input type="text" value="0" id="recipe5_2"/></p>
+	     </div>
+	   </div>
+	   <div class="panel panel-warning" id="6">
+	    <div class="panel-heading" >
+		   <p><b>Saturday &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>Chocolate Cake:  <input type="text" value="0" id="recipe6_1"/>&nbsp;
+		   Cookies:  <input type="text" value="0" id="recipe6_2"/></p>
+	     </div>
+	   </div>
+	   <div class="panel panel-warning" id="7">
+	    <div class="panel-heading" >
+		   <p><b>Sunday &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>Chocolate Cake:  <input type="text" value="0" id="recipe7_1"/>&nbsp;
+		   Cookies:  <input type="text" value="0" id="recipe7_2"/></p>
+	     </div>
+	   </div>
+	   
+	 </div>
+  	 <div class="col-md-4">
+  	   <br/>
+  	   <input type="submit" value="calculate" id="calculator" ><br/><br/>
+	   <div id="render"></div>  <hr/>
+  	   <div id="total"></div>
+	   <div id="ingredients"></div>
+   	   <div id="supplier"></div>
+	   
+  	 </div>
+	   
+
+	   
+
+	  
+   </body>
+   
+   <script>
+   (function(calculatorApp){
+	   
+	   calculatorApp.product=function(pName,cost,per,supplier){
+		   
+		   this.name=pName;
+		   this.cost=cost;
+		   this.per=per;
+		   this.supplier=supplier;  
+	   }
+	   
+	   calculatorApp.recipe=function(rName,ingredients){
+	   	   
+		   this.name=rName;
+		   this.ingredients=ingredients;
+		   this.printOut=function(){
+		   	$("#render").html("<h4>Cost for One Week:</h4>");
+		   }
+		   
+	   }
+
+	   calculatorApp.Total=function(cost,ingredient,recipe1_1,recipe1_2,recipe2_1,recipe2_2,recipe3_1,recipe3_2,recipe4_1,recipe4_2,
+		   recipe5_1,recipe5_2,recipe6_1,recipe6_2,recipe7_1,recipe7_2){
+	       this.recipeCost=cost;
+		   this.ingredient=ingredient;
+		   var q1_1=parseInt(document.getElementById("recipe1_1").value);		   
+		   var q1_2=parseInt(document.getElementById("recipe1_2").value);
+		   
+		   var q2_1=parseInt(document.getElementById("recipe2_1").value);
+		   var q2_2=parseInt(document.getElementById("recipe2_2").value);
+		   
+		   var q3_1=parseInt(document.getElementById("recipe3_1").value);
+		   var q3_2=parseInt(document.getElementById("recipe3_2").value);
+		   
+		   var q4_1=parseInt(document.getElementById("recipe4_1").value);
+		   var q4_2=parseInt(document.getElementById("recipe4_2").value);
+		   
+		   var q5_1=parseInt(document.getElementById("recipe5_1").value);
+		   var q5_2=parseInt(document.getElementById("recipe5_2").value);
+		   
+		   var q6_1=parseInt(document.getElementById("recipe6_1").value);
+		   var q6_2=parseInt(document.getElementById("recipe6_2").value);
+		   
+		   var q7_1=parseInt(document.getElementById("recipe7_1").value);
+		   var q7_2=parseInt(document.getElementById("recipe7_2").value);
+		   var quantity=[q1_1,q1_2,q2_1,q2_2,q3_1,q3_2,q4_1,q4_2,q5_1,q5_2,q6_1,q6_2,q7_1,q7_2];
+		   
+
+		   var totalPrice=0;
+		   this.printOut=function(){
+			   
+			   for(var j=0;j<quantity.length;){
+				   for(var i=0;i<this.recipeCost.length;i++){
+			   		   totalPrice+=this.recipeCost[i]*quantity[j++]
+				   }
+			   }
+			   var totalDiv=document.getElementById("total");
+			   var totalDisplay=document.createElement("div");
+			   totalDisplay.innerHTML="<p>"+"Total:  $"+totalPrice.toFixed(2)+"</p><br/>";
+			   totalDiv.appendChild(totalDisplay);
+			   
+			   
+			   var Flour_recipe1=0;
+			   for(var i=0;i<quantity.length;){
+			       Flour_recipe1+=this.ingredient[0][0]*quantity[i];
+				   i=i+2;
+			   }
+			   var Flour_recipe2=0;
+			   for(var i=1;i<quantity.length;){
+			       Flour_recipe2+=this.ingredient[1][1]*quantity[i];
+				   i=i+2;
+			   }
+			   var Flour=Flour_recipe1+Flour_recipe2;
+			   
+			   var Sugar_recipe1=0;
+			   for(var i=0;i<quantity.length;){
+			       Sugar_recipe1+=this.ingredient[0][1]*quantity[i];
+				   i=i+2;
+			   }
+			   var Sugar_recipe2=0;
+			   for(var i=1;i<quantity.length;){
+			       Sugar_recipe2+=this.ingredient[1][2]*quantity[i];
+				   i=i+2;
+			   }
+			   var Sugar=Sugar_recipe1+Sugar_recipe2;
+			   
+			   var Eggs_recipe1=0;
+			   for(var i=0;i<quantity.length;){
+			       Eggs_recipe1+=this.ingredient[0][2]*quantity[i];
+				   i=i+2;
+			   }
+			   var Eggs_recipe2=0;
+			   for(var i=1;i<quantity.length;){
+			       Eggs_recipe2+=this.ingredient[1][3]*quantity[i];
+				   i=i+2;
+			   }
+			   var Eggs=Eggs_recipe1+Eggs_recipe2;
+			   
+			   var BakingPowder_recipe1=0;
+			   for(var i=0;i<quantity.length;){
+			       BakingPowder_recipe1+=this.ingredient[0][3]*quantity[i];
+				   i=i+2;
+			   }
+			   var BakingPowder_recipe2=0;
+			   for(var i=1;i<quantity.length;){
+			       BakingPowder_recipe2+=this.ingredient[1][4]*quantity[i];
+				   i=i+2;
+			   }
+			   var BakingPowder=BakingPowder_recipe1+BakingPowder_recipe2;
+			   
+			   var BakingSoda=0;
+			   for(var i=0;i<quantity.length;){
+			       BakingSoda+=this.ingredient[0][4]*quantity[i];
+				   i=i+2;
+			   }
+			   var ChocolatePowder=0;
+			   for(var i=0;i<quantity.length;){
+			       ChocolatePowder+=this.ingredient[0][5]*quantity[i];
+				   i=i+2;
+			   }
+			   var Butter=0;
+			   for(var i=1;i<quantity.length;){
+			       Butter+=this.ingredient[1][0]*quantity[i];
+				   i=i+2;
+			   }
+			   var ChocolateChips=0;
+			   for(var i=1;i<quantity.length;){
+			       ChocolateChips+=this.ingredient[1][5]*quantity[i];
+				   i=i+2;
+			   }
+			   var ingredients=[Flour,Sugar,Eggs,BakingPowder,BakingSoda,ChocolatePowder,ChocolateChips,Butter];
+				   
+			   
+			   $("#ingredients").html("<p>Flour_cost: $"+ingredients[0].toFixed(2)+"</p>"+
+			   "<p>Sugar_cost: $"+ingredients[1].toFixed(2)+"</p>"+
+			   "<p>Eggs_cost: $"+ingredients[2].toFixed(2)+"</p>"+
+			   "<p>BakingPowder_cost: $"+ingredients[3].toFixed(2)+"</p>"+
+			   "<p>BakingSoda_cost: $"+ingredients[4].toFixed(2)+"</p>"+
+			   "<p>ChocolatePowder_cost: $"+ingredients[5].toFixed(2)+"</p>"+
+			   "<p>ChocolateChips_cost: $"+ingredients[6].toFixed(2)+"</p>"+
+		       "<p>Butter_cost: $"+ingredients[7].toFixed(2)+"</p><br/>"
+		   	   );
+			   
+		   }
+	   }
+	   calculatorApp.CostPerSupplier=function(cost,recipe1_1,recipe1_2,recipe2_1,recipe2_2,recipe3_1,recipe3_2,recipe4_1,recipe4_2,
+		   recipe5_1,recipe5_2,recipe6_1,recipe6_2,recipe7_1,recipe7_2){
+	       this.supplierCost=cost;
+		   var q1_1=parseInt(document.getElementById("recipe1_1").value);		   
+		   var q1_2=parseInt(document.getElementById("recipe1_2").value);
+		   var q2_1=parseInt(document.getElementById("recipe2_1").value);
+		   var q2_2=parseInt(document.getElementById("recipe2_2").value);
+		   
+		   var q3_1=parseInt(document.getElementById("recipe3_1").value);
+		   var q3_2=parseInt(document.getElementById("recipe3_2").value);
+		   
+		   var q4_1=parseInt(document.getElementById("recipe4_1").value);
+		   var q4_2=parseInt(document.getElementById("recipe4_2").value);
+		   
+		   var q5_1=parseInt(document.getElementById("recipe5_1").value);
+		   var q5_2=parseInt(document.getElementById("recipe5_2").value);
+		   
+		   var q6_1=parseInt(document.getElementById("recipe6_1").value);
+		   var q6_2=parseInt(document.getElementById("recipe6_2").value);
+		   
+		   var q7_1=parseInt(document.getElementById("recipe7_1").value);
+		   var q7_2=parseInt(document.getElementById("recipe7_2").value);
+		   var quantity=[q1_1,q1_2,q2_1,q2_2,q3_1,q3_2,q4_1,q4_2,q5_1,q5_2,q6_1,q6_2,q7_1,q7_2];
+		   
+		   this.printOut=function(){
+			   var cost_recipe1_WB=0;
+			   var cost_recipe1_PFFI=0;
+			   var cost_recipe2_WB=0;
+			   var cost_recipe2_PFFI=0;
+			   
+			   for(var j=0;j<quantity.length;){				   
+				   cost_recipe1_WB+=this.supplierCost[0]*quantity[j];
+				   cost_recipe1_PFFI+=this.supplierCost[1]*quantity[j];
+				   j=j+2;
+			   }
+			   for(var j=1;j<quantity.length;){				   
+				   cost_recipe2_WB+=this.supplierCost[2]*quantity[j];
+				   cost_recipe2_PFFI+=this.supplierCost[3]*quantity[j];
+				   j=j+2;
+			   }
+			
+			   var cost_WB=cost_recipe1_WB+cost_recipe2_WB;
+			   var cost_PFFI=cost_recipe1_PFFI+cost_recipe2_PFFI;
+			   var supplierDiv=document.getElementById("supplier");
+			   var supplierDisplay=document.createElement("div");
+			   supplierDisplay.innerHTML=
+			   "<p>"+"Cost_WB :  $"+cost_WB.toFixed(2)+"</p>"+"<p>"+"Cost_PFFI :  $"+cost_PFFI.toFixed(2)+"</p><br/>"+
+			   "<p>"+"cost_recipe_chocolateCake_WB :  $"+cost_recipe1_WB.toFixed(2)+"</p>"+
+			   "<p>"+"cost_recipe_cookies_WB :  $"+cost_recipe2_WB.toFixed(2)+"</p>"+
+			   "<p>"+"cost_recipe_chocolateCake_PFFI :  $"+cost_recipe1_PFFI.toFixed(2)+"</p>"+   
+			   "<p>"+"cost_recipe_cookies_PFFI :  $"+cost_recipe2_PFFI.toFixed(2)+"</p>";
+			   supplierDiv.appendChild(supplierDisplay);
+		   }
+	   }
+
+   })(window.calculatorApp=window.calculatorApp||{})
+
+   var callback = function(text){
+	   var calculator= JSON.parse(text);
+	   var product= calculator[0].products;
+	   var recipe=calculator[0].recipes;
+	   
+	 
+	  /*
+	   var products={};
+	   products["Flour"]= new calculatorApp.product(product[0].name,product[0].cost,product[0].per,product[0].supplier);
+	   products["Sugar"]= new calculatorApp.product(product[1].name,product[1].cost,product[1].per,product[1].supplier);
+	   products["Eggs"]= new calculatorApp.product(product[2].name,product[2].cost,product[2].per,product[2].supplier);
+	   products["Baking Powder"]= new calculatorApp.product(product[3].name,product[3].cost,product[3].per,product[3].supplier);
+	   products["Baking Soda"]= new calculatorApp.product(product[4].name,product[4].cost,product[4].per,product[4].supplier);
+	   products["Chocolate Powder"]= new calculatorApp.product(product[5].name,product[5].cost,product[5].per,product[5].supplier);
+	   products["Chocolate Chips"]= new calculatorApp.product(product[6].name,product[6].cost,product[6].per,product[6].supplier);
+	   products["Butter"]= new calculatorApp.product(product[7].name,product[7].cost,product[7].per,product[7].supplier);
+	    */
+	   
+	   var recipes={};
+	   recipes["Chocolate Cake"]= new calculatorApp.recipe(recipe[0].name,recipe[0].ingredients);
+	   recipes["Cookies"]= new calculatorApp.recipe(recipe[1].name,recipe[1].ingredients);
+	   recipes["Chocolate Cake"].printOut();
+	   
+
+
+	   
+	   var Flour_cost_recipe1=product[0].cost*recipe[0].ingredients[0].Flour;
+	   
+	   var Flour_cost_recipe2=product[0].cost*recipe[1].ingredients[0].Flour;
+	   
+	   var Sugar_cost_recipe1=product[1].cost*recipe[0].ingredients[0].Sugar;
+	   
+	   var Sugar_cost_recipe2=product[1].cost*recipe[1].ingredients[0].Sugar;
+	   
+	   var Eggs_cost_recipe1=product[2].cost*recipe[0].ingredients[0].Eggs;
+	   
+	   var Eggs_cost_recipe2=product[2].cost*recipe[1].ingredients[0].Eggs;
+	   
+	   var BakingPowder_cost_recipe1=product[3].cost*recipe[0].ingredients[0]['Baking Powder'];
+	   
+	   var BakingPowder_cost_recipe2=product[3].cost*recipe[1].ingredients[0]['Baking Powder'];
+
+	   var BakingSoda_cost=product[4].cost*recipe[0].ingredients[0]['Baking Soda'];
+	   var ChocolatePowder_cost=product[5].cost*recipe[0].ingredients[0]['Chocolate Powder'];
+	   	   
+	   var ChocolateChips_cost=product[6].cost*recipe[1].ingredients[0]['Chocolate Chips'];
+	   var Butter_cost=product[7].cost*recipe[1].ingredients[0].Butter;	   
+	   
+	   
+	   var recipe1_ingredient=
+	   [Flour_cost_recipe1,Sugar_cost_recipe1,Eggs_cost_recipe1,BakingPowder_cost_recipe1,BakingSoda_cost,ChocolatePowder_cost];
+	 
+	   var recipe2_ingredient=
+	   [Butter_cost,Flour_cost_recipe2,Sugar_cost_recipe2,Eggs_cost_recipe2,BakingPowder_cost_recipe2,ChocolateChips_cost];
+	   var ingredient=[recipe1_ingredient,recipe2_ingredient];
+	   
+   		
+   	   var recipe_chocolateCake_price=
+  	   		product[0].cost*recipe[0].ingredients[0].Flour+
+  	   		product[1].cost*recipe[0].ingredients[0].Sugar+
+  	   		product[2].cost*recipe[0].ingredients[0].Eggs+
+  	   		product[3].cost*recipe[0].ingredients[0]['Baking Powder']+
+  	   		product[4].cost*recipe[0].ingredients[0]['Baking Soda']+
+  	   		product[5].cost*recipe[0].ingredients[0]['Chocolate Powder'];
+  
+       var recipe_cookies_price=
+  	   		product[7].cost*recipe[1].ingredients[0].Butter+
+  	   		product[0].cost*recipe[1].ingredients[0].Flour+
+  	   		product[1].cost*recipe[1].ingredients[0].Sugar+
+  	   		product[2].cost*recipe[1].ingredients[0].Eggs+
+  	   		product[3].cost*recipe[1].ingredients[0]['Baking Powder']+
+  	   		product[6].cost*recipe[1].ingredients[0]['Chocolate Chips'];
+
+		var recipePrice=[recipe_chocolateCake_price,recipe_cookies_price];
+		
+		var total= new calculatorApp.Total(recipePrice,ingredient);		
+		total.printOut();
+		
+		
+		var cost_recipe_chocolateCake_PFFI=product[2].cost*recipe[0].ingredients[0].Eggs;
+		var cost_recipe_chocolateCake_WB=recipe_chocolateCake_price-cost_recipe_chocolateCake_PFFI;
+		var cost_recipe_cookies_PFFI=
+		product[7].cost*recipe[1].ingredients[0].Butter + product[2].cost*recipe[1].ingredients[0].Eggs;
+		var cost_recipe_cookies_WB = recipe_cookies_price - cost_recipe_cookies_PFFI;
+		
+		var costPerRecipe=[cost_recipe_chocolateCake_WB,cost_recipe_chocolateCake_PFFI,cost_recipe_cookies_WB,cost_recipe_cookies_PFFI];
+		
+		var cost_perSupplier=new calculatorApp.CostPerSupplier(costPerRecipe);
+		cost_perSupplier.printOut();
+   };
+   var onLoadedCallback = function(event){
+	   var onclickFunction = function(){
+	   		ajax.get("cakeBaby.json",callback);
+			document.getElementById("calculator").removeEventListener("click", onclickFunction);
+	   };
+	   document.getElementById("calculator").addEventListener("click",onclickFunction);
+   };
+   document.addEventListener("DOMContentLoaded", onLoadedCallback );
+   //document.getElementById("calculator").onclick=function(){
+   	
+	//   ajax.get("cakeBaby.json",callback);
+   //};
+   
+   </script>
+   
+</html>

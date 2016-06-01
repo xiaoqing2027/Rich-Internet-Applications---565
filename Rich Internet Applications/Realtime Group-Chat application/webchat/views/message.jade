@@ -1,0 +1,30 @@
+extends layout
+
+block content
+	h1 Welcome, #{username}
+	h4 Chat with your friends! 
+	a(href="/users" target="_blank") See online users
+	div(id="user" hidden="true") #{username}
+	
+	//#p #{chat}
+	//#p #{test}
+	div(id="test")
+	div(id="messages",name="msg")
+	
+	div(style="",name="chatBox")
+		form(method="POST",action="chatroom",name="chatForm",id="msg",class="pure-form")
+			input(type="text", name="message",id="message" placeholder="Enter your message")
+			input(type="submit", class="pure-button  pure-button-primary", name="send" value="send")
+			button(id="thumb", class="pure-button  button-success") thumb up		
+			
+				
+	script(src="https://cdn.socket.io/socket.io-1.2.0.js")
+	script(src="http://code.jquery.com/jquery-1.11.1.js")
+	script(src="javascripts/sockets.js")
+	
+
+
+
+
+
+
